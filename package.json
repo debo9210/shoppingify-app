@@ -1,0 +1,31 @@
+{
+  "name": "shoppingify-master",
+  "version": "1.0.0",
+  "description": "a shopping app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debo9210/shoppingify-app.git"
+  },
+  "author": "debo9210",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/debo9210/shoppingify-app/issues"
+  },
+  "homepage": "https://github.com/debo9210/shoppingify-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
