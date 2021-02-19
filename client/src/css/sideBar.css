@@ -1,0 +1,147 @@
+.SidebarContainer {
+  border: 1px solid tomato;
+  width: 24%;
+  background: #fff0de;
+  display: flex;
+  flex-direction: column;
+}
+
+.Sidebar {
+  background: #fff0de;
+  /* border: 1px solid green; */
+}
+
+.AddItemContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  /* height: 110.91px; */
+  background: #80485b;
+  border-radius: 24px;
+  margin: 30px auto 40px auto;
+}
+
+.LogoContainer {
+  /* border: 1px solid yellow; */
+  width: 30%;
+  position: relative;
+  bottom: 18px;
+  left: 10px;
+}
+
+.LogoContainer img {
+  width: 70px;
+}
+
+.AddItem {
+  /* border: 1px solid cyan; */
+  width: 60%;
+}
+
+.AddItem p {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.AddItemBtn {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: #34333a;
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 25px;
+  margin-top: 12px;
+}
+
+.NoItemsContainer {
+  margin-top: 185px;
+}
+
+.NoItems {
+  /* border: 1px solid orange; */
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  color: #34333a;
+}
+
+.NoItemsImage {
+  /* border: 1px solid black; */
+  width: 70%;
+  margin: 130px auto 0 auto;
+  /* position: relative; */
+}
+
+.NoItemsImage img {
+  width: 100%;
+}
+
+.EnterItemContainer {
+  /* border: 1px solid #fff; */
+  background: #fff;
+  position: relative;
+  /* top: 400px;s */
+  z-index: 2;
+  /* border: 1px solid blue; */
+  /* position: fixed; */
+}
+
+.EnterItemGroup {
+  width: 80%;
+  height: 51.25px;
+  border: 2px solid #c1c1c4;
+  border-radius: 12px;
+  margin: 20px auto;
+}
+
+.EnterItem {
+  width: 75%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  padding-left: 12px;
+  font-size: 18px;
+}
+
+.EnterItem::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #bdbdbd;
+}
+
+.EnterItemBtn {
+  width: 25%;
+  height: 100%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #ffffff;
+  background: #c1c1c4;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.ShowListContainer {
+  border: 1px solid orange;
+  width: 85%;
+  margin: 0 auto;
+}

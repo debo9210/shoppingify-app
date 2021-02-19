@@ -1,0 +1,128 @@
+.SideMenuContainer {
+  /* border: 1px solid tomato; */
+  background: #fff;
+  width: 6%;
+  /* height: 907px; */
+  /* height: 100vh; */
+  /* height: 100%; */
+}
+
+.BrandContainer {
+  /* border: 1px solid green; */
+  height: 35%;
+}
+
+.Brand {
+  /* border: 1px solid green; */
+  width: 2.5em;
+  height: 2.5em;
+  margin: 25px auto 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.MenuContainer {
+  /* border: 1px solid yellow; */
+  height: 35%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+}
+
+.IconContainer {
+  /* border: 1px solid #f9a109; */
+  width: 100%;
+  height: 55px;
+  /* height: 100%; */
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  margin: 20px 0;
+}
+
+.IconContainer i {
+  /* border: 1px solid #f9a109; */
+  width: 100%;
+  padding: 5px 10px;
+  /* text-align: center; */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.AddBorder {
+  border-left: 3px solid #f9a109;
+}
+
+.Banner {
+  display: none;
+  background: #454545;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 3px 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.Banner::after {
+  content: '';
+  position: absolute;
+  border: 4px solid transparent;
+  /* border-bottom: 10px solid red; */
+  /* border-top: 10px solid #cbe8f0; */
+  /* border-left: 10px solid #cbe8f0; */
+  border-right: 4px solid #454545;
+  top: 6px;
+  left: -7px;
+}
+
+.Banner p {
+  display: inline;
+
+  /* display: none; */
+}
+
+.CartContainer {
+  /* border: 1px solid purple; */
+  display: flex;
+  align-items: flex-end;
+  height: 23%;
+}
+
+.Cart {
+  width: 45%;
+  /* border: 1px solid red; */
+  margin: 0 auto 15px auto;
+}
+
+.Cart i {
+  color: #fff;
+  text-align: center;
+  background: #f9a109;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.CartNum {
+  padding: 1px;
+  width: 40%;
+  background: #eb5757;
+  border-radius: 4px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  position: relative;
+  top: 12px;
+  left: 20px;
+  /* display: none; */
+}
+
+/* .Banner {
+  position: relative;
+  background: #cbe8f0;
+  width: 64.64px;
+  height: 21.08px;
+  border-radius: 2px;
+} */

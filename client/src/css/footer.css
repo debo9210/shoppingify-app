@@ -1,0 +1,12 @@
+footer {
+  margin: 10px 0;
+}
+
+.FooterText {
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #a9a9a9;
+  margin: 0;
+}

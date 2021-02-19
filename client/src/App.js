@@ -1,9 +1,12 @@
+import ShoppingifyPage from './components/ShoppingifyPage';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
   return (
     <div className='App'>
-      <h1>Welcome to Shoppingify</h1>
+      <ShoppingifyPage />
+      <Footer />
     </div>
   );
 }

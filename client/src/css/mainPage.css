@@ -1,0 +1,199 @@
+.MainPage {
+  width: 70%;
+  /* border: 1px solid green; */
+}
+
+/* general styles */
+.MainPageContainer,
+.StatisticsContainer {
+  width: 87%;
+  margin: 0 auto;
+  /* border: 1px solid tomato; */
+}
+
+.MainPageHeading {
+  display: flex;
+  align-items: center;
+}
+
+.MainPageHeading h2 {
+  width: 70%;
+  height: 66px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 35px;
+  margin-right: 20px;
+  color: #34333a;
+  /* border: 1px solid blue; */
+}
+
+.MainPageHeading span {
+  color: #f9a109;
+}
+
+.SearchInputGroup {
+  /* border: 1px solid orange; */
+  margin: -40px 0 0 20px;
+  display: flex;
+  align-items: center;
+  width: 30%;
+  /* width: 275.61px; */
+  height: 40px;
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+}
+
+.SearchIcon {
+  width: 15%;
+  /* border: 1px solid red; */
+  padding-left: 10px;
+  color: #34333a;
+}
+
+.SearchInput {
+  width: 85%;
+  height: 38px;
+  /* border: 1px solid green; */
+  border: none;
+  outline: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: #34333a;
+}
+
+.SearchInput::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #bdbdbd;
+}
+
+/* items styles */
+.ItemListContainer {
+  /* border: 1px solid blue; */
+}
+
+.Items h4 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.ItemsContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ItemButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 23.5%;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.ItemName {
+  /* border: 1px solid red; */
+  width: 70%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 10px 0;
+  padding-left: 10px;
+}
+
+.AddIcon {
+  /* border: 1px solid blue; */
+  width: 10%;
+  margin-left: 10px;
+  color: #c1c1c4;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* statistics styles */
+.ProgressBarContainer {
+  width: 47%;
+  /* border: 1px solid blue; */
+  margin-top: 20px;
+}
+
+.StatsHeading {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.ProgressBarStats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ProgressData {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid green; */
+}
+
+.ProgressData p {
+  margin: 8px 0 5px 0;
+}
+
+.DataName {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.DataPercel {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+}
+
+.Progress {
+  background: #e0e0e0;
+  border-radius: 4px;
+  /* (height of inner div) / 2 + padding */
+  /* padding: 3px; */
+  margin-bottom: 10px;
+}
+
+.Progress > div {
+  background-color: #f9a109;
+  width: 40%;
+  /* Adjust with JavaScript */
+  height: 6px;
+  border-radius: 4px;
+}
+
+.Progress2 > div {
+  background-color: #56ccf2;
+}
+
+.ProgressGraphStats {
+  /* border: 1px solid green; */
+  margin-top: 30px;
+}
+
+.ProgressGraph {
+  margin: 40px 0 50px 0;
+}
