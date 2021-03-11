@@ -5,7 +5,8 @@
 
 /* general styles */
 .MainPageContainer,
-.StatisticsContainer {
+.StatisticsContainer,
+.HistoryContainer {
   width: 87%;
   margin: 0 auto;
   /* border: 1px solid tomato; */
@@ -77,6 +78,10 @@
   /* border: 1px solid blue; */
 }
 
+.Items {
+  /* border: 1px solid blue; */
+}
+
 .Items h4 {
   font-style: normal;
   font-weight: 600;
@@ -113,6 +118,12 @@
   line-height: 20px;
   margin: 10px 0;
   padding-left: 10px;
+}
+
+.ItemName:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #1e9ec9;
 }
 
 .AddIcon {
@@ -196,4 +207,182 @@
 
 .ProgressGraph {
   margin: 40px 0 50px 0;
+}
+
+.HistoryContainer {
+  /* border: 1px solid orange; */
+}
+
+.HistoryHeading h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+  /* identical to box height */
+  color: #34333a;
+}
+
+.HistoryDetailsContainer {
+  /* display: flex; */
+  /* border: 1px solid blue; */
+}
+
+.DetailsMonth {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.HistoryDetails {
+  /* border: 1px solid tomato; */
+  display: flex;
+  margin-top: 10px;
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.ShoppingName {
+  width: 68%;
+}
+
+.ShoppingName p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  padding-left: 20px;
+}
+
+.ShoppingStatus {
+  display: flex;
+  width: 32%;
+  align-items: center;
+  /* justify-content: space-between; */
+  /* border: 1px solid blue; */
+}
+
+.EventNoteIcon {
+  color: #c1c1c4;
+}
+
+.EventDate {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  color: #c1c1c4;
+  margin: 0 20px;
+}
+
+.DetailsStatus {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  color: #56ccf2;
+  border: 1px solid #56ccf2;
+  border-radius: 6px;
+  padding: 2px 5px;
+  margin: 0 20px 0 0;
+}
+
+.ExpandMoreIcon {
+  transform: rotate(-90deg);
+  color: #f9a109;
+  cursor: pointer;
+}
+
+.DetailBackBtn {
+  /* border: 1px solid tomato; */
+  width: 10%;
+  display: flex;
+  align-items: center;
+  color: #f9a109;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.DetailBackBtn p {
+  margin: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.ArrowRight2 {
+  transform: rotate(180deg);
+}
+
+.DetailsHeading {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 32px;
+  /* identical to box height */
+  color: #34333a;
+}
+
+.DetailsDate {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.ListDetailsContainer {
+  /* border: 1px solid tomato; */
+  margin-top: 40px;
+}
+
+.ListDetailsContainer h4 {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.ListDetails {
+  /* border: 1px solid green; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.3%;
+  margin-top: 15px;
+}
+
+.ListItemDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 24%;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.ListItemName {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  width: 65%;
+  margin: 10px 30px 10px 10px;
+  /* border: 1px solid red; */
+}
+
+.ListItemQuantity {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  color: #f9a10a;
+  width: 35%;
+  /* margin-left: 30px; */
 }

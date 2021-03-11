@@ -4,7 +4,13 @@ import HistoryComponent from './HistoryComponents';
 import StatisticsComponent from './StatisticsComponents';
 import '../css/mainPage.css';
 
-const MainPage = ({ showItems, showStatistics, showHistory, selectItem }) => {
+const MainPage = ({
+  showItems,
+  showStatistics,
+  showHistory,
+  selectItemHandler,
+  selectItemName,
+}) => {
   return (
     <div className='MainPage'>
       {showItems && (
@@ -23,7 +29,10 @@ const MainPage = ({ showItems, showStatistics, showHistory, selectItem }) => {
               />
             </div>
           </header>
-          <ItemsComponent selectItem={selectItem} />
+          <ItemsComponent
+            selectItemHandler={selectItemHandler}
+            selectItemName={selectItemName}
+          />
         </div>
       )}
       {showHistory && <HistoryComponent />}

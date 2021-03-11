@@ -1,5 +1,5 @@
 .SidebarContainer {
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
   width: 24%;
   background: #fff0de;
   display: flex;
@@ -103,9 +103,13 @@
 .EnterItemGroup {
   width: 80%;
   height: 51.25px;
-  border: 2px solid #c1c1c4;
+  border: 2px solid #f9a109;
   border-radius: 12px;
   margin: 20px auto;
+}
+
+.EnterItemGroupActive {
+  border: 2px solid #c1c1c4;
 }
 
 .EnterItem {
@@ -117,6 +121,7 @@
   border-bottom-left-radius: 12px;
   padding-left: 12px;
   font-size: 18px;
+  color: #34333a;
 }
 
 .EnterItem::placeholder {
@@ -133,15 +138,408 @@
   font-weight: 500;
   font-size: 15px;
   color: #ffffff;
-  background: #c1c1c4;
+  background: #f9a109;
   border-radius: 10px;
   border: none;
   outline: none;
   cursor: pointer;
 }
 
+.EnterItemBtnActive {
+  background: #c1c1c4;
+  cursor: not-allowed;
+}
+
 .ShowListContainer {
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
   width: 85%;
   margin: 0 auto;
+}
+
+.ShowListHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ShowListHeading h4 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  color: #34333a;
+  margin: 0;
+}
+
+.EditIcon {
+  color: #34333a;
+  cursor: pointer;
+}
+
+.ItemHeading {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #828282;
+  margin-bottom: 5px;
+  /* border: 1px solid green; */
+}
+
+.ItemListContainer ul {
+  list-style-type: none;
+  padding: 0;
+  /* border: 1px solid red; */
+}
+
+.AddNewItemContainer {
+  /* border: 1px solid orange; */
+  width: 24%;
+}
+
+.AddNewItem {
+  /* border: 1px solid tomato; */
+  width: 80%;
+  margin: 0 auto;
+}
+
+.AddNewItem h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.AddItemInputGroup {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.AddItemInputGroup label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #34333a;
+  margin: 3px 0;
+}
+
+.AddItemInputGroup input,
+.AddItemInputGroup textarea {
+  /* width: 309.89px; */
+  height: 45.25px;
+  border: 2px solid #bdbdbd;
+  border-radius: 8px;
+  padding-left: 10px;
+  outline: none;
+  font-size: 16px;
+  color: #34333a;
+  background: transparent;
+}
+
+.AddItemInputGroup input::placeholder,
+.AddItemInputGroup textarea::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #bdbdbd;
+}
+
+.AddItemInputGroup textarea {
+  resize: none;
+  height: 110px;
+  padding: 15px 0 0 10px;
+}
+
+.AddItemInputGroup textarea::placeholder {
+  font-family: 'Quicksand' sans-serif;
+}
+
+.CategoryGroup {
+  border: 2px solid #bdbdbd;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.CategoryGroup input {
+  border: none;
+  width: 85%;
+}
+
+.CategoryIcon {
+  margin-left: 7px;
+  font-size: 22px;
+  color: #828282;
+  cursor: pointer;
+}
+
+.CategoryList {
+  border: 1px solid #e0e0e0;
+  /* border: 1px solid green; */
+  margin-top: 10px;
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+}
+
+.CategoryListHidden {
+  display: none;
+}
+
+.CategoryList ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 5px 0;
+}
+
+.CategoryList li {
+  /* border: 1px solid red; */
+  width: 95%;
+  margin: 3px auto;
+  padding: 7px 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #828282;
+}
+
+.CategoryList li:hover {
+  background: #f2f2f2;
+  border-radius: 8px;
+  color: #34333a;
+  cursor: pointer;
+}
+
+.AddItemBtnGroup {
+  /* border: 1px solid orange; */
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: 30px auto;
+}
+
+.SaveItemBtn {
+  background: #f9a109;
+  border-radius: 12px;
+  color: #fff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.CompleteItemBtn {
+  background: #56ccf2;
+}
+
+.CancelItemBtn {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #34333a;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.ShowItemInfoContainer {
+  /* border: 1px solid tomato; */
+  background: #fff;
+  width: 24%;
+}
+
+.ShowItemInfo {
+  width: 85%;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+
+.BackBtnContainer {
+  /* border: 1px solid #f9a109; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+  margin: 20px 0 25px 0;
+  color: #f9a109;
+  cursor: pointer;
+}
+
+.ArrowAltIcon {
+  transform: rotate(180deg);
+}
+
+.BackText {
+  margin: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.ItemImage {
+  width: 100%;
+  height: 219.69px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 40px;
+}
+
+.ItemAbout h4 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #c1c1c4;
+  margin: 0;
+}
+
+.ItemAbout p {
+  margin-top: 8px;
+}
+
+.Name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.Category,
+.Note {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.AddToListBtnGroup {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 30px auto;
+}
+
+.AddToList {
+  border-radius: 10px;
+}
+
+.ItemListDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  /* border: 1px solid orange; */
+}
+
+label > input[type='checkbox'] {
+  display: none;
+}
+
+.InputLabel > input[type='checkbox'] + *::before {
+  content: '';
+  display: none;
+  vertical-align: bottom;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  border: 1px solid #f9a109;
+  margin-right: 10px;
+}
+
+.InputLabel2 > input[type='checkbox'] + *::before {
+  display: inline-block;
+}
+
+.InputLabel > input[type='checkbox']:checked + *::before {
+  font-family: 'Material Icons';
+  content: 'done';
+  color: #f9a109;
+  text-align: center;
+  border-color: #f9a109;
+}
+
+.InputLabel > input[type='checkbox']:checked + * {
+  text-decoration: line-through;
+}
+
+.ItemListDisplay li {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  color: #000000;
+}
+
+.ItemQuantityContainer {
+  display: flex;
+  align-items: center;
+  /* background: #ffffff; */
+  border-radius: 8px;
+  background: transparent;
+}
+
+.ItemContainerBackground {
+  background: #fff;
+}
+
+.ItemQuantityContainer button {
+  cursor: pointer;
+}
+
+.DelItemBtn {
+  background: #f9a109;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 7px 6px;
+  margin-right: 5px;
+  display: none;
+}
+
+.DelItemBtn i {
+  font-size: 14px;
+}
+
+.AddBtn,
+.RemoveBtn {
+  border: none;
+  outline: none;
+  background: transparent;
+  display: none;
+  cursor: pointer;
+}
+
+.AddBtn i,
+.RemoveBtn i {
+  color: #f9a109;
+  font-size: 16px;
+}
+
+.DisplayIcons {
+  display: block;
+}
+
+.ItemQuantityContainer p {
+  margin: 0;
+  padding: 3px 11px;
+  border: 1px solid #f9a109;
+  border-radius: 24px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: #f9a10a;
+  cursor: pointer;
 }

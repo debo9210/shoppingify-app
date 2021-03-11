@@ -5,7 +5,77 @@
 }
 
 .Shoppingify {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   height: 100%;
+}
+
+.ShoppingifyBlur {
+  filter: blur(0.7px);
+}
+
+.ModalConfirmationContainer {
+  width: 408.52px;
+  height: 190px;
+  background: #ffffff;
+  border-radius: 24px;
+  position: absolute;
+  z-index: 5;
+  bottom: 250px;
+  left: 400px;
+  /* border: 1px solid tomato; */
+}
+
+.IconClearContainer {
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.IconClearContainer i {
+  color: #828282;
+  font-size: 20px;
+  padding: 15px 30px 0 0;
+  cursor: pointer;
+}
+
+.ModalConfirmationContainer p {
+  /* border: 1px solid green; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #34333a;
+  width: 80%;
+  margin: 0 0 30px 30px;
+}
+
+.ModalButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+}
+
+.ModalButtonContainer button {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ModalBtnCancel {
+  margin-right: 5px;
+  background: transparent;
+  color: #34333a;
+}
+
+.ModalBtnConfirm {
+  background: #eb5757;
+  color: #fff;
+  border: 1px solid orange;
 }
