@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const colors = require('colors');
 
+const category = require('./routes/api/category');
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,6 +24,8 @@ mongoose
 app.get('/', (req, res) => {
   res.send('Welcome to shopify backend');
 });
+
+app.use('/api/category', category);
 
 const port = process.env.PORT || 5000;
 
