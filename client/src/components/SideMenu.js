@@ -34,6 +34,8 @@ const SideMenu = ({
     statisticsRef.current.nextSibling.style.display = 'none';
   };
 
+  const itemCount = JSON.parse(sessionStorage.getItem('count'));
+
   return (
     <div className='SideMenuContainer'>
       <div className='BrandContainer'>
@@ -85,7 +87,7 @@ const SideMenu = ({
       </div>
       <div className='CartContainer'>
         <div className='Cart'>
-          <div className='CartNum'>5</div>
+          <div className='CartNum'>{itemCount}</div>
           <i className='material-icons'>add_shopping_cart</i>
         </div>
       </div>

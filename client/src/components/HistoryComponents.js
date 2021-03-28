@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getShoppingHistory } from '../redux/actions/ShoppingHistoryActions';
+import moment from 'moment';
+import Loader from './Loader';
 
 const HistoryComponents = () => {
+  const dispatch = useDispatch();
+
   const [showHistory, setShowHistory] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
+  const [shoppingListName, setShoppingListName] = useState('');
+  const [shoppingDate, setShoppingDate] = useState('');
+  const [shoppingDetails, setShoppingDetails] = useState([]);
 
-  const showDetailsHandler = () => {
+  const { history, loading } = useSelector((state) => state.shoppingHistory);
+
+  const showDetailsHandler = (e) => {
+    const listName =
+      e.target.parentElement.parentElement.firstChild.firstChild.textContent;
+
+    for (let i = 0; i < history.length; i++) {
+      for (let j = 0; j < history[i].monthDetails.length; j++) {
+        if (history[i].monthDetails[j].historyName === listName) {
+          setShoppingListName(history[i].monthDetails[j].historyName);
+          setShoppingDate(
+            moment(history[i].monthDetails[j].date).format('ddd DD.MM.YYYY')
+          );
+          setShoppingDetails(history[i].monthDetails[j].historyDetails);
+        }
+      }
+    }
+
     setShowHistory(false);
     setShowDetails(true);
   };
@@ -13,6 +39,72 @@ const HistoryComponents = () => {
     setShowHistory(true);
     setShowDetails(false);
   };
+
+  let shoppingHistoryDetails;
+  if (shoppingDetails) {
+    shoppingHistoryDetails = shoppingDetails.map((details, i) => (
+      <div key={i} className='ListDetailsContainer'>
+        <h4>{Object.keys(details)[0]}</h4>
+
+        <div className='ListDetails'>
+          {Object.values(details)[0].map((item, i) => (
+            <div key={i} className='ListItemDetails'>
+              <p className='ListItemName'>{item[0]} </p>
+              <p className='ListItemQuantity'>{item[1]} pcs</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    ));
+  }
+
+  let historyDetails;
+  if (history) {
+    historyDetails = history.map((details) => (
+      <div className='Details' key={details._id}>
+        <p className='DetailsMonth'>{details.historyMonth}</p>
+        {details.monthDetails.map((det) => (
+          <div key={det._id} className='HistoryDetails'>
+            <div className='ShoppingName'>
+              <p>{det.historyName}</p>
+            </div>
+            <div className='ShoppingStatus'>
+              <i className='material-icons EventNoteIcon'>event_note</i>
+              <p className='EventDate'>
+                {moment(det.date).format('ddd DD.MM.YYYY')}
+              </p>
+              <p
+                className='DetailsStatus'
+                style={
+                  det.historyStatus === 'cancelled'
+                    ? { border: '1px solid #EB5757', color: '#EB5757' }
+                    : null
+                }
+              >
+                {det.historyStatus}
+              </p>
+              <i
+                className='material-icons ExpandMoreIcon'
+                onClick={showDetailsHandler}
+              >
+                expand_more
+              </i>
+            </div>
+          </div>
+        ))}
+      </div>
+    ));
+  }
+
+  useEffect(() => {
+    if (history) {
+      // console.log(history);
+    }
+  }, [history]);
+
+  useEffect(() => {
+    dispatch(getShoppingHistory());
+  }, [dispatch]);
 
   return (
     <div className='HistoryContainer'>
@@ -23,23 +115,7 @@ const HistoryComponents = () => {
           </header>
 
           <div className='HistoryDetailsContainer'>
-            <p className='DetailsMonth'>August 2020</p>
-            <div className='HistoryDetails'>
-              <div className='ShoppingName'>
-                <p>Grocery List</p>
-              </div>
-              <div className='ShoppingStatus'>
-                <i className='material-icons EventNoteIcon'>event_note</i>
-                <p className='EventDate'>Mon 16.7.2020</p>
-                <p className='DetailsStatus'>completed</p>
-                <i
-                  className='material-icons ExpandMoreIcon'
-                  onClick={showDetailsHandler}
-                >
-                  expand_more
-                </i>
-              </div>
-            </div>
+            <>{loading ? <Loader /> : historyDetails}</>
           </div>
         </>
       )}
@@ -51,48 +127,16 @@ const HistoryComponents = () => {
             <p>back</p>
           </div>
 
-          <h3 className='DetailsHeading'>Eero’s farewell party</h3>
+          <h3 className='DetailsHeading'>{shoppingListName}</h3>
 
           <div className='DetailsDate'>
             <i className='material-icons EventNoteIcon'>event_note</i>
             <p className='EventDate' style={{ marginLeft: '5px' }}>
-              Mon 16.7.2020
+              {shoppingDate}
             </p>
           </div>
 
-          <div className='ListDetailsContainer'>
-            <h4>Cookies</h4>
-
-            <div className='ListDetails'>
-              <div className='ListItemDetails'>
-                <p className='ListItemName'>Cookies Chocolate </p>
-                <p className='ListItemQuantity'>3 pcs</p>
-              </div>
-              <div className='ListItemDetails'>
-                <p className='ListItemName'>Doris Truffle</p>
-                <p className='ListItemQuantity'>1 pcs</p>
-              </div>
-            </div>
-          </div>
-
-          <div className='ListDetailsContainer'>
-            <h4>Beverages</h4>
-
-            <div className='ListDetails'>
-              <div className='ListItemDetails'>
-                <p className='ListItemName'>2 x soft drink 1.5 l</p>
-                <p className='ListItemQuantity'>2 pcs</p>
-              </div>
-              <div className='ListItemDetails'>
-                <p className='ListItemName'>Beer</p>
-                <p className='ListItemQuantity'>8 pcs</p>
-              </div>
-              <div className='ListItemDetails'>
-                <p className='ListItemName'>Cider</p>
-                <p className='ListItemQuantity'>6 pcs</p>
-              </div>
-            </div>
-          </div>
+          {shoppingHistoryDetails}
         </>
       )}
     </div>

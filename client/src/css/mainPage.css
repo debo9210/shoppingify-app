@@ -94,7 +94,8 @@
 
 .ItemsContainer {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 2%;
   flex-wrap: wrap;
 }
 
@@ -190,7 +191,7 @@
 
 .Progress > div {
   background-color: #f9a109;
-  width: 40%;
+  width: 10%;
   /* Adjust with JavaScript */
   height: 6px;
   border-radius: 4px;
@@ -198,6 +199,7 @@
 
 .Progress2 > div {
   background-color: #56ccf2;
+  width: 60%;
 }
 
 .ProgressGraphStats {
@@ -227,8 +229,13 @@
   /* border: 1px solid blue; */
 }
 
+.Details {
+  /* border: 1px solid blue; */
+  margin-bottom: 50px;
+}
+
 .DetailsMonth {
-  margin: 0;
+  margin: 0 0 30px 0;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -323,6 +330,7 @@
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
+  text-transform: capitalize;
   line-height: 32px;
   /* identical to box height */
   color: #34333a;
@@ -364,6 +372,7 @@
   background: #ffffff;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
+  /* border: 1px dashed orange; */
 }
 
 .ListItemName {
@@ -385,4 +394,12 @@
   color: #f9a10a;
   width: 35%;
   /* margin-left: 30px; */
+}
+
+.CategoryError {
+  margin: 40px 0;
+  border-radius: 5px;
+  padding: 10px 5px;
+  background: #f8d7da;
+  color: #845397;
 }

@@ -22,7 +22,6 @@ router.get('/', (req, res) => {
 // @Desc create category and items in db
 // @Access Public
 router.post('/', (req, res) => {
-  //   console.log(req.body);
   const { errors, isValid } = validateCategoryInput(req.body);
 
   //check validation

@@ -27,6 +27,7 @@
     "colors": "^1.4.0",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.11.16",
     "validator": "^13.5.2"
   },

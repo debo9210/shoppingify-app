@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const colors = require('colors');
 
 const category = require('./routes/api/category');
+const shoppingHistory = require('./routes/api/shoppingHistory');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/category', category);
+app.use('/api/shoppingHistory', shoppingHistory);
 
 const port = process.env.PORT || 5000;
 

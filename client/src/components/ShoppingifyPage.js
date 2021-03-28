@@ -1,9 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SideMenu from './SideMenu';
 import MainPage from './MainPage';
 import SideBar from './SideBar';
+import { getCategories } from '../redux/actions/CategoryActions';
 
 const ShoppingifyPage = () => {
+  const dispatch = useDispatch();
+
+  const { itemCategories } = useSelector((state) => state.categories);
+
   const [showItems, setShowItems] = useState(true);
   const [showHistory, setShowHistory] = useState(false);
   const [showStatistics, setShowStatistics] = useState(false);
@@ -55,6 +61,7 @@ const ShoppingifyPage = () => {
   };
 
   const selectItemHandler = (e) => {
+    // console.log(e.target);
     const itemHeadingText =
       e.target.parentElement.parentElement.previousSibling.textContent;
 
@@ -73,6 +80,12 @@ const ShoppingifyPage = () => {
 
     setShowList(true);
     setNoItems(false);
+
+    if (itemName.indexOf(itemNameText) === -1) {
+      let itemCount = JSON.parse(sessionStorage.getItem('count'));
+
+      sessionStorage.setItem('count', JSON.stringify(itemCount + 1));
+    }
   };
 
   // console.log(count);
@@ -89,6 +102,7 @@ const ShoppingifyPage = () => {
   };
 
   const selectItemNameHandler = (e) => {
+    // console.log(e.target);
     const itemNameText = e.target.textContent;
     const itemHeadingText =
       e.target.parentElement.parentElement.previousSibling.textContent;
@@ -100,6 +114,14 @@ const ShoppingifyPage = () => {
     setShoppingColumn(false);
     setAddItem(false);
   };
+
+  let details;
+  if (itemCategories) {
+    details = itemCategories
+      .filter((item) => item.categoryName === itemHeading)
+      .map((item) => item.itemDetails)
+      .map((item) => item);
+  }
 
   const backBtnHandler = () => {
     setShowItemInfo(false);
@@ -118,6 +140,37 @@ const ShoppingifyPage = () => {
 
     setShowItemInfo(false);
     setShoppingColumn(true);
+  };
+
+  const deleteItemHandler = (e) => {
+    let i;
+
+    const categoryTitle =
+      e.target.parentElement.parentElement.parentElement.parentElement
+        .parentElement.firstChild.textContent;
+
+    const itemName =
+      e.target.parentElement.parentElement.previousSibling.firstChild.lastChild
+        .textContent;
+
+    const category = JSON.parse(localStorage.getItem(categoryTitle)) || [];
+
+    for (i = 0; i < category.length; i++) {
+      if (category[i] === itemName) {
+        category.splice(i, 1);
+      }
+    }
+    localStorage.setItem(categoryTitle, JSON.stringify(category));
+
+    if (category.length === 0) {
+      localStorage.removeItem(categoryTitle);
+    }
+
+    let itemCount = JSON.parse(sessionStorage.getItem('count'));
+
+    sessionStorage.setItem('count', JSON.stringify(itemCount - 1));
+
+    window.location.reload();
   };
 
   const removeItemFromListHandler = () => {
@@ -143,17 +196,17 @@ const ShoppingifyPage = () => {
   useEffect(() => {
     if (!showList) {
       itemInputGroupRef.current.classList.add('EnterItemGroupActive');
-      itemInputGroupRef.current.lastChild.classList.add('EnterItemBtnActive');
+      itemInputGroupRef.current.children[1].classList.add('EnterItemBtnActive');
     } else {
       itemInputGroupRef.current.classList.remove('EnterItemGroupActive');
-      itemInputGroupRef.current.lastChild.classList.remove(
+      itemInputGroupRef.current.children[1].classList.remove(
         'EnterItemBtnActive'
       );
     }
   }, [showList, itemInputGroupRef]);
 
   useEffect(() => {
-    var names = [];
+    let names = [];
     let i;
     for (i = 0; i < categoryArr.length; i++) {
       if (itemHeading === categoryArr[i]) {
@@ -180,6 +233,7 @@ const ShoppingifyPage = () => {
         name: key,
         value: value,
       };
+
       categoryArr.push(categoryObj);
     }
     setCategoryList(categoryArr);
@@ -189,6 +243,10 @@ const ShoppingifyPage = () => {
       setShowList(true);
     }
   }, [itemName, itemHeading]);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   return (
     <div className='Shoppingify'>
@@ -223,6 +281,11 @@ const ShoppingifyPage = () => {
         categoryList={categoryList}
         addItemToListHandler={addItemToListHandler}
         removeItemFromListHandler={removeItemFromListHandler}
+        categoryTitle={itemHeading}
+        categoryDetails={details}
+        itemName={itemNameText}
+        itemCategories={itemCategories}
+        deleteItemHandler={deleteItemHandler}
       />
     </div>
   );

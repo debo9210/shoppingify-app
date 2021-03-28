@@ -1,9 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalConfirmation from './ModalComponent';
 import '../css/sideBar.css';
 import Logo from '../images/source.svg';
 import NoItems from '../images/undraw_shopping_app_flsj 1.svg';
-import Avocado from '../images/introducing-avocado-to-babies.jpg';
+import NoImage from '../images/no-image-icon-15.png';
+import {
+  createCategory,
+  getCategories,
+} from '../redux/actions/CategoryActions';
+import {
+  createShoppingHistory,
+  clearError,
+  clearSuccess,
+  updateShoppingStatus,
+} from '../redux/actions/ShoppingHistoryActions';
 
 const SideBar = ({
   showList,
@@ -21,12 +32,44 @@ const SideBar = ({
   categoryList,
   addItemToListHandler,
   removeItemFromListHandler,
+  categoryTitle,
+  categoryDetails,
+  itemName,
+  itemCategories,
+  deleteItemHandler,
 }) => {
+  const dispatch = useDispatch();
+
   const [saveItem, setSaveItem] = useState(true);
   const [editItem, setEditItem] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [catItemName, setCatItemName] = useState('');
+  const [catItemNote, setCatItemNote] = useState('');
+  const [catItemImage, setCatItemImage] = useState('');
+  const [categoryName, setCategoryName] = useState('');
+  const [listName, setListName] = useState('');
+  const [shoppingHistoryID, setShoppingHistoryID] = useState('');
 
   const categoryDropDownRef = useRef(null);
+  const inputItemNameRef = useRef(null);
+  const textAreaItemNoteRef = useRef(null);
+  const inputItemImageRef = useRef(null);
+  const categoryIconRef = useRef(null);
+  const inputListNameRef = useRef(null);
+  const successMsgRef = useRef(null);
+
+  const { error, success, history } = useSelector(
+    (state) => state.createShoppingHistory
+  );
+
+  if (success) {
+    successMsgRef.current.style.display = 'block';
+  }
+
+  const hideSuccessMsgHandler = () => {
+    successMsgRef.current.style.display = 'none';
+    dispatch(clearSuccess());
+  };
 
   const showCategoryListHandler = (e) => {
     if (e.target.textContent === 'arrow_drop_down') {
@@ -40,6 +83,9 @@ const SideBar = ({
 
   const categoryValueHandler = (e) => {
     categoryInputRef.current.value = e.target.textContent;
+    setCategoryName(e.target.textContent);
+    categoryDropDownRef.current.classList.add('CategoryListHidden');
+    categoryIconRef.current.textContent = 'arrow_drop_down';
   };
 
   const inputCheck = Array.from(document.querySelectorAll('.InputLabel'));
@@ -76,12 +122,23 @@ const SideBar = ({
     shoppingifyPage.classList.remove('ShoppingifyBlur');
   };
 
+  const completeHandler = (e) => {
+    dispatch(updateShoppingStatus(shoppingHistoryID, 'completed', listName));
+    inputCheck.forEach((i) => {
+      i.classList.remove('InputLabel2');
+    });
+    setSaveItem(true);
+    setEditItem(false);
+  };
+
   const deleteListHandler = () => {
     let i;
     for (i = 0; i < categoryList.length; i++) {
       localStorage.removeItem(categoryList[i].name);
     }
+    dispatch(updateShoppingStatus(shoppingHistoryID, 'cancelled', listName));
     setShowModal(false);
+    sessionStorage.setItem('count', JSON.stringify(0));
     window.location.reload();
   };
 
@@ -99,49 +156,23 @@ const SideBar = ({
   const increaseItemHandler = (e) => {
     let itemNum = e.target.parentNode.previousSibling;
 
-    var value = parseInt(itemNum.innerText, 10);
+    var value = parseInt(itemNum.innerText);
     value = isNaN(value) ? 0 : value;
     value++;
+
     itemNum.innerText = `${value} pcs`;
   };
 
   const decreaseItemHandler = (e) => {
     let itemNum = e.target.parentNode.nextSibling;
 
-    var value = parseInt(itemNum.innerText, 10);
+    var value = parseInt(itemNum.innerText);
     value = isNaN(value) ? 0 : value;
     value--;
 
     if (value < 0) return;
 
     itemNum.innerText = `${value} pcs`;
-  };
-
-  const deleteItemHandler = (e) => {
-    let i;
-
-    const categoryTitle =
-      e.target.parentElement.parentElement.parentElement.parentElement
-        .parentElement.firstChild.textContent;
-
-    const itemName =
-      e.target.parentElement.parentElement.previousSibling.firstChild.lastChild
-        .textContent;
-
-    const category = JSON.parse(localStorage.getItem(categoryTitle)) || [];
-
-    for (i = 0; i < category.length; i++) {
-      if (category[i] === itemName) {
-        category.splice(i, 1);
-      }
-    }
-    localStorage.setItem(categoryTitle, JSON.stringify(category));
-
-    if (category.length === 0) {
-      localStorage.removeItem(categoryTitle);
-    }
-
-    window.location.reload();
   };
 
   const noItems = <div className='NoItems'>No items</div>;
@@ -198,6 +229,107 @@ const SideBar = ({
     </div>
   ));
 
+  const saveListHandler = (e) => {
+    dispatch(clearError());
+    // console.log(listName);
+    inputListNameRef.current.value = '';
+    // setListName('');
+    const CATEGORYDETAILS = [];
+    const itemsTotal = [];
+    const categoryDetails = Array.from(itemCategoryRef.current.children);
+
+    categoryDetails.forEach((category) => {
+      const itemCategory = {};
+      const ITEMS = [];
+      let itemCategoryName;
+      itemCategoryName = category.firstChild.textContent;
+
+      const firstLayer = category.lastChild.children;
+
+      for (let i = 0; i < firstLayer.length; i++) {
+        const itemName =
+          firstLayer[i].children[0].firstChild.lastChild.textContent;
+
+        const itemQuantity = parseInt(
+          firstLayer[i].children[1].children[2].textContent
+        );
+
+        ITEMS.push([itemName, itemQuantity]);
+        itemsTotal.push(itemQuantity);
+      }
+
+      itemCategory[itemCategoryName] = ITEMS;
+
+      CATEGORYDETAILS.push(itemCategory);
+    });
+
+    // console.log(CATEGORYDETAILS);
+    // CATEGORYDETAILS.map((x) => console.log(Object.keys(x)[0]));
+    // CATEGORYDETAILS.map((x) => console.log(Object.values(Object.values(x)[0])));
+
+    let itemSum = itemsTotal.reduce((itemNum, sum) => {
+      return itemNum + sum;
+    }, 0);
+
+    // console.log(itemSum);
+
+    const historyData = {
+      historyName: listName,
+      historyDetails: CATEGORYDETAILS,
+      itemsTotal: itemSum,
+    };
+    dispatch(createShoppingHistory(historyData));
+  };
+
+  let itemNote, itemImage, ItemName;
+  if (categoryDetails) {
+    categoryDetails.forEach((category) => {
+      category.map((category) => {
+        if (category.itemName === itemName) {
+          // console.log(category);
+          itemImage = category.itemImage;
+          ItemName = category.itemName;
+          itemNote = category.itemNote;
+        }
+      });
+    });
+  }
+
+  let categoryListDropdown;
+  if (itemCategories) {
+    categoryListDropdown = itemCategories.map((category, i) => (
+      <li key={i} onClick={categoryValueHandler}>
+        {category.categoryName}
+      </li>
+    ));
+  }
+
+  const saveItemHandler = (e) => {
+    const categoryData = {
+      categoryName: categoryName,
+      itemNote: catItemNote,
+      itemImage: catItemImage,
+      itemName: catItemName,
+    };
+
+    dispatch(createCategory(categoryData));
+    inputItemNameRef.current.value = '';
+    textAreaItemNoteRef.current.value = '';
+    inputItemImageRef.current.value = '';
+    categoryInputRef.current.value = '';
+
+    setTimeout(() => {
+      dispatch(getCategories());
+    }, 5000);
+  };
+
+  useEffect(() => {
+    if (history) {
+      setShoppingHistoryID(history._id);
+      // console.log(history);
+    }
+  }, [history]);
+
   return (
     <>
       {shoppingColumn && (
@@ -242,14 +374,32 @@ const SideBar = ({
           </div>
           <div className='EnterItemContainer'>
             {saveItem && (
-              <div className='EnterItemGroup' ref={itemInputGroupRef}>
-                <input
-                  className='EnterItem'
-                  type='text'
-                  placeholder='Enter a name'
-                />
-                <button className='EnterItemBtn'>Save</button>
-              </div>
+              <>
+                <div className='EnterItemGroup' ref={itemInputGroupRef}>
+                  <input
+                    className='EnterItem'
+                    type='text'
+                    placeholder='Enter a name'
+                    onChange={(e) => setListName(e.target.value)}
+                    ref={inputListNameRef}
+                  />
+                  <button className='EnterItemBtn' onClick={saveListHandler}>
+                    Save
+                  </button>
+                  <small>{error ? error.historyName : null}</small>
+                  <div className='SuccessMsg' ref={successMsgRef}>
+                    <div className='SuccessContainer'>
+                      <p>List saved</p>
+                      <i
+                        className='material-icons'
+                        onClick={hideSuccessMsgHandler}
+                      >
+                        clear
+                      </i>
+                    </div>
+                  </div>
+                </div>
+              </>
             )}
             {editItem && (
               <div className='AddItemBtnGroup'>
@@ -259,7 +409,10 @@ const SideBar = ({
                 >
                   cancel
                 </button>
-                <button className='SaveItemBtn CompleteItemBtn'>
+                <button
+                  className='SaveItemBtn CompleteItemBtn'
+                  onClick={completeHandler}
+                >
                   Complete
                 </button>
               </div>
@@ -274,15 +427,29 @@ const SideBar = ({
             <h3>Add a new item</h3>
             <div className='AddItemInputGroup'>
               <label htmlFor=''>Name</label>
-              <input type='text' placeholder='Enter a name' />
+              <input
+                type='text'
+                placeholder='Enter a name'
+                onChange={(e) => setCatItemName(e.target.value)}
+                ref={inputItemNameRef}
+              />
             </div>
             <div className='AddItemInputGroup'>
               <label htmlFor=''>Note (optional)</label>
-              <textarea placeholder='Enter a note'></textarea>
+              <textarea
+                placeholder='Enter a note'
+                onChange={(e) => setCatItemNote(e.target.value)}
+                ref={textAreaItemNoteRef}
+              ></textarea>
             </div>
             <div className='AddItemInputGroup'>
               <label htmlFor=''>Image (optional)</label>
-              <input type='text' placeholder='Enter a url' />
+              <input
+                type='text'
+                placeholder='Enter a url'
+                onChange={(e) => setCatItemImage(e.target.value)}
+                ref={inputItemImageRef}
+              />
             </div>
 
             <div className='AddItemInputGroup'>
@@ -292,10 +459,12 @@ const SideBar = ({
                   type='text'
                   placeholder='Enter a category'
                   ref={categoryInputRef}
+                  onChange={(e) => setCategoryName(e.target.value)}
                 />
                 <i
                   className='material-icons CategoryIcon'
                   onClick={showCategoryListHandler}
+                  ref={categoryIconRef}
                 >
                   arrow_drop_down
                 </i>
@@ -304,19 +473,16 @@ const SideBar = ({
                 className='CategoryList CategoryListHidden'
                 ref={categoryDropDownRef}
               >
-                <ul>
-                  <li onClick={categoryValueHandler}>Fruit and vegetables</li>
-                  <li onClick={categoryValueHandler}>Meat and Fish</li>
-                  <li onClick={categoryValueHandler}>Beverages</li>
-                  <li onClick={categoryValueHandler}>Pets</li>
-                </ul>
+                <ul>{categoryListDropdown}</ul>
               </div>
             </div>
             <div className='AddItemBtnGroup'>
               <button className='CancelItemBtn' onClick={cancelAddItemHandler}>
                 cancel
               </button>
-              <button className='SaveItemBtn'>Save</button>
+              <button className='SaveItemBtn' onClick={saveItemHandler}>
+                Save
+              </button>
             </div>
           </div>
         </div>
@@ -331,25 +497,21 @@ const SideBar = ({
             </div>
             <div
               className='ItemImage'
-              style={{ backgroundImage: `url(${Avocado})` }}
+              style={{
+                backgroundImage: `url(${itemImage ? itemImage : NoImage})`,
+              }}
             ></div>
             <div className='ItemAbout'>
               <h4>name</h4>
-              <p className='Name'>Avocado</p>
+              <p className='Name'>{ItemName}</p>
             </div>
             <div className='ItemAbout'>
               <h4>category</h4>
-              <p className='Category'>Fruit and vegetables</p>
+              <p className='Category'>{categoryTitle}</p>
             </div>
             <div className='ItemAbout'>
               <h4>note</h4>
-              <p className='Note'>
-                Nutrient-dense foods are those that provide substantial amounts
-                of vitamins, minerals and other nutrients with relatively few
-                calories. One-third of a medium avocado (50 g) has 80 calories
-                and contributes nearly 20 vitamins and minerals, making it a
-                great nutrient-dense food choice.{' '}
-              </p>
+              <p className='Note'>{itemNote ? itemNote : null}</p>
             </div>
 
             <div className='AddToListBtnGroup'>

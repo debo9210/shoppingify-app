@@ -24,16 +24,6 @@ const CategorySchema = new Schema({
       },
     },
   ],
-  // itemName: {
-  //   type: Array,
-  //   required: true,
-  // },
-  // itemNote: {
-  //   type: String,
-  // },
-  // itemImage: {
-  //   type: String,
-  // },
   createdAt: {
     type: Date,
     default: Date.now,
