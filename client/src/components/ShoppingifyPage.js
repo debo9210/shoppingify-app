@@ -101,26 +101,35 @@ const ShoppingifyPage = () => {
     categoryInputRef.current.value = '';
   };
 
-  const selectItemNameHandler = (e) => {
-    // console.log(e.target);
-    const itemNameText = e.target.textContent;
-    const itemHeadingText =
-      e.target.parentElement.parentElement.previousSibling.textContent;
-
-    setItemHeading(itemHeadingText);
-    setItemNameText(itemNameText);
-
+  const showItemDetailsHandler = (e) => {
+    setItemNameText(e.target.textContent);
     setShowItemInfo(true);
     setShoppingColumn(false);
     setAddItem(false);
+    // document.querySelector('.SearchInput').value = '';
   };
 
-  let details;
+  let Details;
+  let itemDetails;
   if (itemCategories) {
-    details = itemCategories
-      .filter((item) => item.categoryName === itemHeading)
-      .map((item) => item.itemDetails)
-      .map((item) => item);
+    Details = itemCategories
+      .map((category) => {
+        return category.itemDetails;
+      })
+      .map((itemDetails) => {
+        return itemDetails;
+      })
+      .map((details) => {
+        return details;
+      });
+
+    for (let i = 0; i < Details.length; i++) {
+      for (let j = 0; j < Details[i].length; j++) {
+        if (Details[i][j].itemName === itemNameText) {
+          itemDetails = Details[i][j];
+        }
+      }
+    }
   }
 
   const backBtnHandler = () => {
@@ -263,7 +272,9 @@ const ShoppingifyPage = () => {
         showStatistics={showStatistics}
         showHistory={showHistory}
         selectItemHandler={selectItemHandler}
-        selectItemName={selectItemNameHandler}
+        selectItemName={showItemDetailsHandler}
+        itemCategories={itemCategories}
+        showItemDetailsHandler={showItemDetailsHandler}
       />
       <SideBar
         showList={showList}
@@ -282,7 +293,7 @@ const ShoppingifyPage = () => {
         addItemToListHandler={addItemToListHandler}
         removeItemFromListHandler={removeItemFromListHandler}
         categoryTitle={itemHeading}
-        categoryDetails={details}
+        categoryDetails={itemDetails}
         itemName={itemNameText}
         itemCategories={itemCategories}
         deleteItemHandler={deleteItemHandler}

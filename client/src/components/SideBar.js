@@ -40,6 +40,8 @@ const SideBar = ({
 }) => {
   const dispatch = useDispatch();
 
+  // console.log(categoryDetails);
+
   const [saveItem, setSaveItem] = useState(true);
   const [editItem, setEditItem] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -231,9 +233,7 @@ const SideBar = ({
 
   const saveListHandler = (e) => {
     dispatch(clearError());
-    // console.log(listName);
     inputListNameRef.current.value = '';
-    // setListName('');
     const CATEGORYDETAILS = [];
     const itemsTotal = [];
     const categoryDetails = Array.from(itemCategoryRef.current.children);
@@ -263,10 +263,6 @@ const SideBar = ({
       CATEGORYDETAILS.push(itemCategory);
     });
 
-    // console.log(CATEGORYDETAILS);
-    // CATEGORYDETAILS.map((x) => console.log(Object.keys(x)[0]));
-    // CATEGORYDETAILS.map((x) => console.log(Object.values(Object.values(x)[0])));
-
     let itemSum = itemsTotal.reduce((itemNum, sum) => {
       return itemNum + sum;
     }, 0);
@@ -283,16 +279,9 @@ const SideBar = ({
 
   let itemNote, itemImage, ItemName;
   if (categoryDetails) {
-    categoryDetails.forEach((category) => {
-      category.map((category) => {
-        if (category.itemName === itemName) {
-          // console.log(category);
-          itemImage = category.itemImage;
-          ItemName = category.itemName;
-          itemNote = category.itemNote;
-        }
-      });
-    });
+    itemNote = categoryDetails.itemNote;
+    itemImage = categoryDetails.itemImage;
+    itemName = categoryDetails.itemName;
   }
 
   let categoryListDropdown;
