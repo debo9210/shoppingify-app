@@ -23,9 +23,9 @@ mongoose
   .then(() => console.log('Connected to database'.rainbow))
   .catch((err) => console.log(err));
 
-app.get('/', (req, res) => {
-  res.send('Welcome to shopify backend');
-});
+// app.get('/', (req, res) => {
+//   res.send('Welcome to shopify backend');
+// });
 
 // use routes
 app.use('/api/category', category);
