@@ -87,7 +87,7 @@ const SideMenu = ({
       </div>
       <div className='CartContainer'>
         <div className='Cart'>
-          <div className='CartNum'>{itemCount}</div>
+          <div className='CartNum'>{itemCount === null ? 0 : itemCount}</div>
           <i className='material-icons'>add_shopping_cart</i>
         </div>
       </div>

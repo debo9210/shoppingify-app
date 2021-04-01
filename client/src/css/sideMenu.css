@@ -92,7 +92,7 @@
 }
 
 .Cart {
-  width: 45%;
+  width: 100%;
   /* border: 1px solid red; */
   margin: 0 auto 15px auto;
 }
@@ -103,11 +103,12 @@
   background: #f9a109;
   padding: 5px;
   border-radius: 50%;
+  margin-left: 10px;
 }
 
 .CartNum {
-  padding: 1px;
-  width: 40%;
+  padding: 1px 0;
+  width: 35%;
   background: #eb5757;
   border-radius: 4px;
   text-align: center;
@@ -115,7 +116,7 @@
   font-size: 12px;
   position: relative;
   top: 12px;
-  left: 20px;
+  left: 33px;
   /* display: none; */
 }
 
@@ -126,3 +127,14 @@
   height: 21.08px;
   border-radius: 2px;
 } */
+
+@media only screen and (min-width: 320px) and (max-width: 414px) {
+  .SideMenuContainer {
+    /* border: 1px solid tomato; */
+    background: #fff;
+    width: 15%;
+    /* height: 907px; */
+    /* height: 100vh; */
+    /* height: 100%; */
+  }
+}

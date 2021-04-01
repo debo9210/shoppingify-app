@@ -69,12 +69,34 @@ const MainPage = ({
     }, 200);
   };
 
+  const showSideBarHandler = () => {
+    const itemListContainer = document.querySelector('.ItemListContainer');
+    const mainPageContainer = document.querySelector('.MainPageContainer');
+    const sidebarContainer = document.querySelector('.SidebarContainer');
+    const mainPage = document.querySelector('.MainPage');
+    itemListContainer.style.display = 'none';
+    mainPageContainer.style.display = 'none';
+    mainPage.style.width = '0%';
+    mainPageContainer.style.width = '0%';
+    sidebarContainer.style.display = 'block';
+    sidebarContainer.style.width = '100%';
+  };
+
   useEffect(() => {}, []);
 
   return (
     <div className='MainPage'>
       {showItems && (
         <div className='MainPageContainer'>
+          <div className='MobileMenuContainer'>
+            <i
+              className='material-icons MobileMenu'
+              onClick={showSideBarHandler}
+              title='open shopping list'
+            >
+              menu
+            </i>
+          </div>
           <header className='MainPageHeading'>
             <h2>
               <span>Shoppingify</span> allows you take your shopping list

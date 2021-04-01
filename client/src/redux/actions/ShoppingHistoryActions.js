@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {
+  CREATE_CATEGORY_FAIL,
   CREATE_SHOPPING_HISTORY_FAIL,
   CREATE_SHOPPING_HISTORY_REQUEST,
   CREATE_SHOPPING_HISTORY_SUCCESS,
@@ -51,6 +52,11 @@ export const createShoppingHistory = (historyData) => async (dispatch) => {
 export const clearError = () => (dispatch) => {
   dispatch({
     type: CREATE_SHOPPING_HISTORY_FAIL,
+    payload: {},
+  });
+
+  dispatch({
+    type: CREATE_CATEGORY_FAIL,
     payload: {},
   });
 };

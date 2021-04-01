@@ -112,7 +112,7 @@
   border: 2px solid #c1c1c4;
 }
 
-.EnterItemGroup small {
+.ErrorMessage {
   color: tomato;
   font-style: italic;
   font-size: 12px;
@@ -573,4 +573,39 @@ label > input[type='checkbox'] {
   cursor: pointer;
   color: #0f8db7;
   margin-right: 5px;
+}
+
+.SideBarClose {
+  display: none;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .SidebarContainer {
+    display: none;
+    /* width: 80%; */
+    /* border: 1px solid red; */
+  }
+
+  .SideBarClose {
+    display: flex;
+    justify-content: flex-end;
+    /* border: 1px solid orange; */
+  }
+
+  .SideBarClose i {
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.61);
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .AddNewItemContainer {
+    /* border: 1px solid orange; */
+    width: 90%;
+  }
+
+  .ShowItemInfoContainer {
+    /* border: 1px solid tomato; */
+    width: 90%;
+  }
 }

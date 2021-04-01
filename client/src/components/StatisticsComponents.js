@@ -298,7 +298,10 @@ const StatisticsComponents = () => {
             data={chartData}
             // data={CHARTDATA}
             width={100}
-            height={40}
+            // height={40}
+            height={
+              window.innerWidth === 320 || window.innerWidth === 414 ? 100 : 40
+            }
             options={{
               // title: {
               //   display: true,

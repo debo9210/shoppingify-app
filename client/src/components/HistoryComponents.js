@@ -17,7 +17,8 @@ const HistoryComponents = () => {
 
   const showDetailsHandler = (e) => {
     const listName =
-      e.target.parentElement.parentElement.firstChild.firstChild.textContent;
+      e.target.parentElement.parentElement.parentElement.firstChild.firstChild
+        .textContent;
 
     for (let i = 0; i < history.length; i++) {
       for (let j = 0; j < history[i].monthDetails.length; j++) {
@@ -73,22 +74,26 @@ const HistoryComponents = () => {
               <p className='EventDate'>
                 {moment(det.date).format('ddd DD.MM.YYYY')}
               </p>
-              <p
-                className='DetailsStatus'
-                style={
-                  det.historyStatus === 'cancelled'
-                    ? { border: '1px solid #EB5757', color: '#EB5757' }
-                    : null
-                }
-              >
-                {det.historyStatus}
-              </p>
-              <i
-                className='material-icons ExpandMoreIcon'
-                onClick={showDetailsHandler}
-              >
-                expand_more
-              </i>
+              <div className='DetailsStatus'>
+                <p
+                  style={
+                    det.historyStatus === 'cancelled'
+                      ? {
+                          border: '1px solid #EB5757',
+                          color: '#EB5757',
+                          padding: '2px 5px 2px 8px',
+                        }
+                      : null
+                  }
+                >
+                  {det.historyStatus}
+                </p>
+              </div>
+              <div className='ExpandMoreIcon'>
+                <i className='material-icons ' onClick={showDetailsHandler}>
+                  expand_more
+                </i>
+              </div>
             </div>
           </div>
         ))}

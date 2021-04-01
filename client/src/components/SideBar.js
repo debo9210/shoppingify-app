@@ -64,6 +64,10 @@ const SideBar = ({
     (state) => state.createShoppingHistory
   );
 
+  const { error: createCategoryError } = useSelector(
+    (state) => state.createCategories
+  );
+
   if (success) {
     successMsgRef.current.style.display = 'block';
   }
@@ -294,6 +298,8 @@ const SideBar = ({
   }
 
   const saveItemHandler = (e) => {
+    dispatch(clearError());
+
     const categoryData = {
       categoryName: categoryName,
       itemNote: catItemNote,
@@ -312,6 +318,19 @@ const SideBar = ({
     }, 5000);
   };
 
+  const hideSideBarHandler = () => {
+    const itemListContainer = document.querySelector('.ItemListContainer');
+    const mainPageContainer = document.querySelector('.MainPageContainer');
+    const sidebarContainer = document.querySelector('.SidebarContainer');
+    const mainPage = document.querySelector('.MainPage');
+    itemListContainer.style.display = 'block';
+    mainPageContainer.style.display = 'block';
+    mainPage.style.width = '100%';
+    mainPageContainer.style.width = '93%';
+    sidebarContainer.style.display = 'none';
+    sidebarContainer.style.width = '24%';
+  };
+
   useEffect(() => {
     if (history) {
       setShoppingHistoryID(history._id);
@@ -323,6 +342,15 @@ const SideBar = ({
     <>
       {shoppingColumn && (
         <div className='SidebarContainer'>
+          <div className='SideBarClose'>
+            <i
+              className='material-icons'
+              onClick={hideSideBarHandler}
+              title='close shopping list'
+            >
+              clear
+            </i>
+          </div>
           <div className='Sidebar'>
             <div className='AddItemContainer'>
               <div className='LogoContainer'>
@@ -375,7 +403,9 @@ const SideBar = ({
                   <button className='EnterItemBtn' onClick={saveListHandler}>
                     Save
                   </button>
-                  <small>{error ? error.historyName : null}</small>
+                  <small className='ErrorMessage'>
+                    {error ? error.historyName : null}
+                  </small>
                   <div className='SuccessMsg' ref={successMsgRef}>
                     <div className='SuccessContainer'>
                       <p>List saved</p>
@@ -422,6 +452,9 @@ const SideBar = ({
                 onChange={(e) => setCatItemName(e.target.value)}
                 ref={inputItemNameRef}
               />
+              <small className='ErrorMessage'>
+                {createCategoryError ? createCategoryError.itemName : null}
+              </small>
             </div>
             <div className='AddItemInputGroup'>
               <label htmlFor=''>Note (optional)</label>
@@ -458,6 +491,9 @@ const SideBar = ({
                   arrow_drop_down
                 </i>
               </div>
+              <small className='ErrorMessage'>
+                {createCategoryError ? createCategoryError.categoryName : null}
+              </small>
               <div
                 className='CategoryList CategoryListHidden'
                 ref={categoryDropDownRef}
