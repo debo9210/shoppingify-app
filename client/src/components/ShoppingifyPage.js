@@ -104,8 +104,6 @@ const ShoppingifyPage = () => {
     }
   };
 
-  // console.log(count);
-
   const showAddItemHandler = () => {
     setAddItem(true);
     setShoppingColumn(false);
@@ -117,10 +115,6 @@ const ShoppingifyPage = () => {
     categoryInputRef.current.value = '';
 
     if (window.innerWidth >= 320 && window.innerWidth <= 768) {
-      const sidebarContainer = document.querySelector('.SidebarContainer');
-      // sidebarContainer.style.display = 'block';
-      // sidebarContainer.style.width = '90%';
-
       const mainPage = document.querySelector('.MainPage');
       mainPage.style.width = '100%';
 
@@ -137,7 +131,7 @@ const ShoppingifyPage = () => {
     setShowItemInfo(true);
     setShoppingColumn(false);
     setAddItem(false);
-    // document.querySelector('.SearchInput').value = '';
+
     if (window.innerWidth >= 320 && window.innerWidth <= 768) {
       const mainPage = document.querySelector('.MainPage');
       mainPage.style.width = '0%';
@@ -147,9 +141,6 @@ const ShoppingifyPage = () => {
       const mainPageContainer = document.querySelector('.MainPageContainer');
       mainPageContainer.style.display = 'none';
       mainPageContainer.style.width = '0%';
-      // const sidebarContainer = document.querySelector('.SidebarContainer');
-      // sidebarContainer.style.display = 'block';
-      // sidebarContainer.style.width = '90%';
     }
   };
 
